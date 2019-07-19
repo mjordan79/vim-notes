@@ -1,0 +1,6 @@
+- 2 - Vim quickstart
+-- Modes --
+1) Normal Mode: everything that's typed is a (case sensitive) command.
+2) Insert Mode: enter the insert mode with "i". Exit with ESC.
+3) Line Mode (Command Line Mode): enter the line mode with ":".
+
