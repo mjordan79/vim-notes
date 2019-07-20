@@ -1,6 +1,41 @@
 - 2 - Vim quickstart
--- Modes --
+  -- Modes --
 1) Normal Mode: everything that's typed is a (case sensitive) command.
 2) Insert Mode: enter the insert mode with "i". Exit with ESC.
 3) Line Mode (Command Line Mode): enter the line mode with ":".
+
+- 3 - Vim Essentials
+  -- Essential Navigation Commands --
+j, k, h, l (Move the cursor around)
+CTRL-f (Move 1 page forward)
+CTRL-b (Move 1 page back)
+w (Move forward 1 word)
+b (Move back 1 word)
+W (Move forward 1 word irrespective of punctuation)
+B (Move back 1 word irrespective of punctuation)
+gg (Go to the start of the file)
+G (Go to the end of the file)
+<n>gg (Go to the nth line)
+:44 ENTER (In line mode, goes to the 44th line)
+:$ ENTER (In line mode, goes to the last line)
+CTRL-G (Shows document informations)
+:set ruler (In line mode, enable the ruler)
+:set noruler (In line mode, disables the rules)
+:set ruler! (In line mode, if the ruler is enabled, it disables it.)
+g CTRL-G (Show more document informations)
+z ENTER (Keeps the cursor at the current position, but reposition the view)
+0 (Goes to the first column of the line)
+<n> (j, k, l, h moves n characters in the selected direction)
+^ (Moves to the first character of the line)
+$ (Goes to the end of the line)
+  -- Deleting text and thinking in Vim --
+x (deletes the character under the cursor)
+X (deletes the character at the left of the cursor)
+dw (deletes an entire word starting from the right of the cursor - d for the delete operation, w for the word)
+dW (like the previous command but punctuation ignored)
+d$ (deletes all the text from the right of the cursor)
+db (deletes an entire word starting from the left of the cursor)
+dB (like the previous command but ignores punctuation)
+dd (deletes the whole line)
+. (repeats the last command)
 
