@@ -29,11 +29,12 @@ z ENTER (Keeps the cursor at the current position, but reposition the view)
 ^ (Moves to the first character of the line)
 $ (Goes to the end of the line)
   -- Deleting text and thinking in Vim --
-x (deletes the character under the cursor)
+x (deletes the character at the right of the cursor)
 X (deletes the character at the left of the cursor)
 dw (deletes an entire word starting from the right of the cursor - d for the delete operation, w for the word)
 dW (like the previous command but punctuation ignored)
 d$ (deletes all the text from the right of the cursor)
+d0 (deletes all the text from the left of the cursor)
 db (deletes an entire word starting from the left of the cursor)
 dB (like the previous command but ignores punctuation)
 dd (deletes the whole line)
@@ -48,4 +49,39 @@ CTRL-i goes forward to the position in the documentation
 CTRL-ww switch window and position the cursor in the other window outside the documentation.
 CTRL-d shows a list of commands that completes the command we're writing
 TAB shows a wildmenu (:set wildmenu) for the possible completion of the command.
+
+- 5 - Deleting, Yanking and Putting
+Cut, Copy and Paste in vim are called Kill, Yank and Put.
+Killing and yanking are operations stored in various types of registers:
+1. Unnamed register
+2. Numbered registers
+3. Named registers
+4. Black Hole register.
+
+Registers are prefixed with "
+Unnamed register: ""
+Numbered registers: "0, "1, "2, etc.
+Named registers: "a, "b, etc. (there are 26, from a to z)
+Blackhole register: "_
+
+"" contains text from the operations d, c, s, x, and y.
+"0 holds the last yanked text (y)
+"1 holds the last deleted (d) or changed (c) text.
+Subsequent numbered registers shift with each d or c operation.
+"_ the blackhole register stores text on demand without affecting other registers.
+
+The d series of commands do not delete text physically. They kill the text instead.
+For example, dd will kill the whole line and puts the line inside the unnamed register and in "1 register.
+
+:reg (Inspect the content of the registers)
+:reg 14 (Shows the content of registers "1 and "4)
+u (Undo the last command)
+CTRL-r (Redo the last command)
+y (Yank text. This command accepts all previous variations od the 'd' command, yw, yy, etc).
+p (Put (paste) the killed or yanked text in the line under the cursor)
+P (Put the killed or yanked text in the line above the cursor)
+"r d [y] (Kill or yank text in the specified register r)
+"n p (Put the text stored in the register n)
+"a y (Yank text in the named register a
+"A y (Yank other text appending it in the named register a)
 
