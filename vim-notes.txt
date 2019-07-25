@@ -87,7 +87,7 @@ P (Put the killed or yanked text in the line above the cursor)
 
 - 6 - Transforming and substituting text
 I (Move the cursor to the first non-blank character of a line and enters insert mode)
-a (Open inser mode at the right of the cursor)
+a (Open insert mode at the right of the cursor)
 A (Goes to the end of the line and enters insert mode)
 o (Insert a new line and enter insert mode)
 O (Insert a new line above the line and enters insert mode)
@@ -100,7 +100,8 @@ c$ (Like before, but replaces all the text from the cursor to the end)
 cc (Like before, but applys to the whole line)
 ~ (swap a character at the right of the cursor from lowercase to uppercase and viceversa)
 g~w (swap characters from lowercase to uppercase for a whole word)
-g~$ (swap characters form lowercase to uppercase for the whole line)
+g~~ (swap characters from lowercase to uppercase for a whole line)
+g~$ (swap characters form lowercase to uppercase for the whole line from the current cursor position)
 gUw (force all characters uppercase for a word, regardless of the capitalization)
 gU$ (force all characters uppercase for a whole line, regardless of the capitalization)
 guw (force all characters lowercase for a word, regardless of the capitalization)
@@ -108,7 +109,8 @@ gu$ (force all characters lowercase for w whole line, regardless of the capitali
 J (Joins two consecutive lines. It appends spaces intelligently)
 [n]J (Joins n consecutive strings appending a space for each joined line)
 gJ (Joins two consecutive lines without appending spaces)
-   -- Search, Find and Replace
+
+   -- Search, Find and Replace 1
 f c (In a line, search for the first occurrence of the character c. Repeat the same search along the line with :, in the opposite direction with ,)
 F c (In a line, back-search for the first occurrence of the character c. Repeat with : while repeating in the opposite direction with , )
 t c (In a line, search for the first occurrence of a character and position the cursor on the character before it)
@@ -121,4 +123,24 @@ dtw (Search commands are motions, they can be concatenated with other commands. 
 ?word (back-search for a word, 'n' to repeat the search, N to reverse the order)
 * (keep pressing asterisk) (Search for the word under the cursor, n to repeat the command and continuing searching)
 # (keep pressing #) (Back-search for the word under the cursor, n to repeat the command, N to reverse the order)
+
+   -- Search, Find and Replace 2
+:s/old/new/ (Substitute old with new in the linei, only first occurrence)
+:s/old/new/[flags] (with flag g, all occurrence in the line will be substituted)
+:[range]s/old/new/[flags] (A range is one or more lines, separated by a , or ; The simplest range is a line number)
+:1s/is/isn't/g (Will substitute all occurrences of is with isn't on line 1)
+:1,5s/for/FOR/g (Will substitute all occurrences of for with FOR in the first 5 lines)
+Other range symbols are:
+. --> Current line
+$ --> Last line
+% --> All lines (entire file)
+.,$s/old/new/g (Substitute all occurrences of old with new from the current line to the end)
+:/Global/,/Local/s/net/org/g (In the range from the line containing the word Global to the word Local, substitute all occurs of net with org)
+:/Global/,$s/net/org/g (From the line containing Global to the end of the file, substitute all occurs of net with org)
+In order to substitute words containing characters that are also part of the command, we need to quote them. For example:
+to substitute /var/spool with /usr/local:
+:s/\/var\/spool/\/usr\/local/
+There is an easier way: using another symbol as the character separator, for example the character # (others can be used, like +, |, etc)
+:s#/var/spool#/usr/local# (Substitute /var/spool with /usr/local, using a different character separator)
+:set nu [nonu] [nu!] [nu?] (Set line numbers in the editor)
 
