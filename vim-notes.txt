@@ -1,4 +1,4 @@
-- 2 - Vim quickstart
+ 2 - Vim quickstart
   -- Modes --
 1) Normal Mode: everything that's typed is a (case sensitive) command.
 2) Insert Mode: enter the insert mode with "i". Exit with ESC.
@@ -143,4 +143,46 @@ to substitute /var/spool with /usr/local:
 There is an easier way: using another symbol as the character separator, for example the character # (others can be used, like +, |, etc)
 :s#/var/spool#/usr/local# (Substitute /var/spool with /usr/local, using a different character separator)
 :set nu [nonu] [nu!] [nu?] (Set line numbers in the editor)
+
+- 7 - Text Objects and Macros
+   
+   -- Text Objects
+When operating with text objects, the command operate on the entire object regardless of the cursor position.
+daw (delete a word - deletes an entire word, including the whitespace after it. Word in this case is considered a text object)
+diw (delete inner word - deletes an entire word preserving the whitespace after it)
+Patterns for text objects are:
+  {operator}{a}{object}
+  {operator}{i}{object}
+a and i are punctuation and whitespaces delimited, A and I don't consider punctuation.
+eg. daw (delete a word) or ciw (change inner word)
+   
+   -- Sentences and paragraph text objects
+A sentence boundary is a period.
+To delete full sentences, 'is' or 'as' are used in conjuction with the operator.
+das (deletes a sentence)
+dis (deletes an inner sentence preserving the whitespace at the end)
+
+A paragraph boundary is a blank line.
+To delete full paragraph, 'ap' or 'ip' are used in conjunction with the operator.
+dap (deletes a paragraph)
+dip (deletes an inner paragraph preserving the whitespace at the end)
+   
+   -- Custom text objects
+In programming languages, delimiters for text are of various types.
+It can be specified after the 'a' or 'i' operator.
+
+ca] (changes all the text enclosed between [ and ], including the brackets)
+ci] (changes all the text enclosed between [ and ], preserving the brackets which are the boundaries)
+da) or dab (changes all the text enclosed between ( and ), including the brackets, also called blocks with the specific command dab)
+di) or dib (changes all the text enclosed between ( and ), preserving the brackets, also called blocks with the specific command dib)
+da} or daB (changes all the text enclosed between { and }, including the brackets, also called blocks with the specific command daB)
+di} or diB (changes all the text enclosed between { and }, preserving the brackets, also called blocks with the specific command diB)
+This series of commands also works with characters <>, "", '', `` 
+b are blocks enclosed in round parentheses, B are blocks enclosed in curly braces.
+
+   -- Tag objects
+In HTML for example, <p>text</p> constitutes tags. Vim has specific tag text objects, represented by the operator 't'.
+Each text enclosed between angular brackets are considered tags in Vim.
+dat (deletes all the text enclosed between two tags, including the tags)
+dit (deletes all the text enclosed between two tags, preserving the tags)
 
