@@ -1,4 +1,4 @@
- 2 - Vim quickstart
+- 2 - Vim quickstart
   -- Modes --
 1) Normal Mode: everything that's typed is a (case sensitive) command.
 2) Insert Mode: enter the insert mode with "i". Exit with ESC.
@@ -199,4 +199,48 @@ Before recording macros, it's good practice to:
   - Normalize the cursor position using '0'
   - Record commands
   - Go to the next line using j
+
+- 8 - Visual Mode
+There are three types of visual modes.
+ 1. Characterwise visual mode
+ 2. Linewise visual mode
+ 3. Blockwise visual mode
+
+v (Enters characterwise visual mode)
+V (Enters linewise visual mode)
+CTRL+v (Enters blockwise visual mode)
+o (Switch selection in the opposite direction)
+O (In visual block mode, it moves the cursor in the opposite position of the line)
+gv (If exiting the visual mode for some reason, it re-enters it preserving selections made in it)
+In Visual Mode, operation that can be done on the selected text are:
+  ~ - Switch case
+  c - Change 
+  d - Delete
+  y - Yank
+  r - Replace
+  x - Delete
+  I - Insert
+  A - Append
+  J - Join
+  u - Make lowercase
+  U - Make uppercase
+  > - Shift text right (Settings involved :shiftwidth, :tabstop, :expandtab)
+  < - Shift text left
+Selection doesn't involve only motion commands, but also text objects. Selection can be done using text objects without the 
+command. For example:
+iw (Selects in visual mode an inner word)
+ap (Selects in visual mode the whole paragraph)
+is (Selects in visual mode the inner statement)
+Traditional selection commands for text objects are also possible, for example 'vyap' will work.
+In visual block mode, there are times that a line longer than its successor is longer. It won't be selected using traditional motions.
+Using the character "$" it will be selected.
+When lines are selected in visual mode and the user enters command line mode with :, a set of characters are presented:
+:'<,'> (Represents the boundaries for the visual selection in visual mode)
+Substitution command can be entered like this:
+:'<,'>s/United States of America/USA/g
+:'<,'>ce (Center the selection with 80 columns format)
+:'<,'>ce 40 (Center the selection with 40 columns format)
+:'<,'>le (Align left the selection)
+:'<,'>le5 (Align left with 5 space padding)
+:'<,'>ri5 (Align right with 5 space padding)
 
