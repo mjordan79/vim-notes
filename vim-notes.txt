@@ -77,7 +77,7 @@ For example, dd will kill the whole line and puts the line inside the unnamed re
 :reg 14 (Shows the content of registers "1 and "4)
 u (Undo the last command)
 CTRL-r (Redo the last command)
-y (Yank text. This command accepts all previous variations od the 'd' command, yw, yy, etc).
+y (Yank (copy) text. This command accepts all previous variations od the 'd' command, yw, yy, etc).
 p (Put (paste) the killed or yanked text in the line under the cursor)
 P (Put the killed or yanked text in the line above the cursor)
 "r d [y] (Kill or yank text in the specified register r)
@@ -134,7 +134,7 @@ Other range symbols are:
 . --> Current line
 $ --> Last line
 % --> All lines (entire file)
-.,$s/old/new/g (Substitute all occurrences of old with new from the current line to the end)
+:.,$s/old/new/g (Substitute all occurrences of old with new from the current line to the end)
 :/Global/,/Local/s/net/org/g (In the range from the line containing the word Global to the word Local, substitute all occurs of net with org)
 :/Global/,$s/net/org/g (From the line containing Global to the end of the file, substitute all occurs of net with org)
 In order to substitute words containing characters that are also part of the command, we need to quote them. For example:
@@ -185,4 +185,18 @@ In HTML for example, <p>text</p> constitutes tags. Vim has specific tag text obj
 Each text enclosed between angular brackets are considered tags in Vim.
 dat (deletes all the text enclosed between two tags, including the tags)
 dit (deletes all the text enclosed between two tags, preserving the tags)
+   -- Macros
+Macros are a recorded sequence of keystokes. Keystrokes are recorded into registers and played back when requested.
+qa (Start recording a macro inside register a)
+qA (Start recording an updated macro at register a appending to it)
+q (stops recording the macro when done)
+@a (plays the macro at register 'a')
+@@ (replays the last played macro)
+2@a (repeats the macro in the register a 2 times)
+:15,27 normal @a (Executes the macro in the range of lines starting from 15 to 27)
+
+Before recording macros, it's good practice to:
+  - Normalize the cursor position using '0'
+  - Record commands
+  - Go to the next line using j
 
