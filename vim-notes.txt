@@ -244,3 +244,64 @@ Substitution command can be entered like this:
 :'<,'>le5 (Align left with 5 space padding)
 :'<,'>ri5 (Align right with 5 space padding)
 
+- 9 - Vim Settings, Preferences and Customizations
+:set (Shows all the options set with the set command)
+:set command& (Will reset the value set by the command to its default value)
+:h option-list (Shows the list of configurable options for the .vimrc file)
+:option (Shows the list of configurable options for the .vimrc file among with their documentation)
+:set history=1000 (Set the history for the commands)
+" (Represents a comment in the .vimrc file)
+:set ruler (Show the cursor position)
+:set showcmd (Shows incomplete commands when digiting them in command mode)
+:set wildmenu (Shows a menu during tab completion of commands)
+:set scrolloff=5 (Defaults to 0. Influence the z ENTER command. It will leave 5 rows when scrolling the text)
+:set hlsearch (Enables highlight searching)
+:set incsearch (Enables incremental searching)
+:set ignorecase
+:set smartcase
+:set number (Shows line numbers)
+:set backup (Saves a backup file everytime a file is saved, eg. ~filename.txt)
+:set bex=something (Set the backup extension)
+:set autoindent [ai] (Enables autoindenting)
+:set smartindent [si] (Enables smart indenting, useful for source code)
+:set bg=dark [=light] (Set the background color)
+:color colorscheme (Set the color scheme. CTRL-D for seeing the possible completions)
+:map (prints the key mapping, the different ones from the defaults)
+:map KEY KEYSTROKES (Assign a keystroke to a key)
+:source .vimrc (Reloads the .vimrc file or any file specified)
+When overriding commands, it is possible to use a namespace to avoid to overwrite existing commands. This is a special character called leader key, and its default is \.
+map <leader>w :w!<CR>
+When you press \w, the executed command is the defined one.
+The leader key can be redefined with:
+let mapleader="," (Redefines the leader key from \ to ,)
+:mkvimrc (Creates a new .vimrc file)
+
+- 10 - Vim Buffers and Windows
+Buffers can have three states, visible in the buffer list:
+a - active and visible
+h - hidden, loaded in memory but not visible
+i - inactive, not loaded in memory and not displayed.
+% means current buffer, # means alternate buffer.
++ means the buffer has unsaved modifications.
+:set hidden (Makes Vim unload buffers that are not visible and reload them once they're visible)
+
+:e file (Edit another file in the Vim buffer)
+:buffers (Shows the available open buffers)
+:b3 (Opens buffer number 3)
+:b buffer_name (Open buffer named buffer_name)
+:ls (like :buffers)
+:bn (Open the next buffer)
+:bp (Open the previous buffer)
+:bf (Open the first buffer)
+:bl (Open the last buffer)
+CTRL-^ (Open the alternate buffer [the buffer before the current one])
+:qall! (Closes all buffers without saving)
+:wall (Saves the content of all buffers)
+:badd <filename> (Open a new buffer with the file content)
+:bd (Deletes (unload) the buffer from the list)
+:1,3bd (Unloads buffers 1 to 3)
+:%bd (Unloads all buffers)
+:bufdo set nu (Executes the command set nu for all buffers)
+:bufdo %s/#/@/g | w (Replaces for all buffers the # with @, then save, then proceed for the next buffer)
+:E (Opens the Explore window)
+
