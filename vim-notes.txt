@@ -277,6 +277,7 @@ let mapleader="," (Redefines the leader key from \ to ,)
 :mkvimrc (Creates a new .vimrc file)
 
 - 10 - Vim Buffers and Windows
+   Buffers
 Buffers can have three states, visible in the buffer list:
 a - active and visible
 h - hidden, loaded in memory but not visible
@@ -285,7 +286,7 @@ i - inactive, not loaded in memory and not displayed.
 + means the buffer has unsaved modifications.
 :set hidden (Makes Vim unload buffers that are not visible and reload them once they're visible)
 
-:e file (Edit another file in the Vim buffer)
+:e file (Edit another file in the Vim buffer and opens it in the current buffer)
 :buffers (Shows the available open buffers)
 :b3 (Opens buffer number 3)
 :b buffer_name (Open buffer named buffer_name)
@@ -304,4 +305,22 @@ CTRL-^ (Open the alternate buffer [the buffer before the current one])
 :bufdo set nu (Executes the command set nu for all buffers)
 :bufdo %s/#/@/g | w (Replaces for all buffers the # with @, then save, then proceed for the next buffer)
 :E (Opens the Explore window)
+   Windows
+:sp or CTRL-w s (Splits window horizontally)
+:vs or CTRL-w v (Splits window vertically)
+:sp buf-name (Splits horizontally and puts the content of the specified buffer)
+CTRL-w q (Quits the window)
+:on or CTRL-w o (Closes all the windows except the current one)
+CTRL-ww (Moves the cursor to the next window. It cycles from left to the right)
+CTRL-w j, k, h, l (Moves the cursor to down, up, left or right window to the cursor)
+CTRL-w + or - (Increase or decrease the height of the window)
+CTRL-s > or < (Increase or decrease the width of the window)
+CTRL-w _ (Maximize the height of the window)
+CTRL-w |  (Maximize the width of the window)
+CTRL-w = (Makes all windows of equal size)
+CTRL-w r or R (Rotates windows horizontally to the right or left)
+CTRL-w J, K, H, L (Moves windows in the specified direction)
+:ba (Opens all the buffer each in its own window)
+:windo <command> (Applies the command to all the windows)
+
 
